@@ -5,3 +5,4 @@ matplotlib==3.9.2
 seaborn==0.13.2
 scipy==1.14.1
 scikit-learn==1.5.1
+tpot==0.12.2
