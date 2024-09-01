@@ -13,14 +13,9 @@ from bentoml.validators import ContentType
 class ProductionService():
     def __init__(self):
         try:
-            model = bentoml.models.get("hotel_booking_model:latest")
-        except bentoml.exceptions.NotFound:
-            print("Model not found. Loading from file.")
-            model = bentoml.models.import_model(path="../models/hotel_booking_model.bentomodel")
+            self.model = bentoml.sklearn.load_model("hotel_booking_model")
         except Exception as e:
-            raise e
-        
-        self.model = model.load_model()
+            self.model = bentoml.models.import_model("./hotel_booking_model.bentomodel").to_runner()
     
     @bentoml.api(route="/predict_from_record")
     def predict_record(
