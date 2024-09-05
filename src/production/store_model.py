@@ -2,6 +2,26 @@ import pandas as pd
 
 data = pd.read_csv('train.csv')
 X = data.drop('booking_status', axis=1)
+columns_to_preserve = [
+            'lead_time',
+            'avg_price_per_room',
+            'arrival_date',
+            'arrival_month',
+            'no_of_special_requests_1',
+            'no_of_special_requests_2+',
+            'market_segment_type_Online',
+            'no_of_weekend_nights_1',
+            'no_of_weekend_nights_2',
+            'type_of_meal_plan_Not Selected',
+            'room_type_reserved_Room_Type 5',
+            'no_of_week_nights_3',
+            'arrival_year',
+            'type_of_meal_plan_Meal Plan 2',
+            'no_of_adults',
+            'room_type_reserved_Room_Type 6',
+            'room_type_reserved_Room_Type 4'
+        ]
+X = X[columns_to_preserve]
 y = data['booking_status']
 
 X.shape, y.shape
@@ -35,7 +55,7 @@ import bentoml
 
 try:
     bentoml.sklearn.save_model(
-        name="hotel_booking_model",
+        name="hotel_booking_model_1",
         model=model
     )
 except Exception as e:
@@ -43,8 +63,8 @@ except Exception as e:
     
 try:
     bentoml.models.export_model(
-        tag="hotel_booking_model:latest",
-        path="hotel_booking_model"
+        tag="hotel_booking_model_1:latest",
+        path="hotel_booking_model_1"
     )
 except Exception as e:
     print(e)
