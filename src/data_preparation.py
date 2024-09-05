@@ -1,3 +1,46 @@
+### Description
+# This script performs data preparation on the hotel reservations dataset.
+# The following steps are performed:
+# 1. Load the dataset
+# 2. Drop the 'Booking_ID' column
+# 3. Perform one-hot encoding on the 'type_of_meal_plan' column
+# 4. Perform one-hot encoding on the 'room_type_reserved' column
+# 5. Perform one-hot encoding on the 'market_segment_type' column
+# 6. Encode the 'booking_status' column
+# 7. Remove rows where 'type_of_meal_plan' is 'Meal Plan 3'
+# 8. Remove rows where 'room_type_reserved' is 'Room_Type 3'
+# 9. Remove rows where 'market_segment_type' is 'Aviation' or 'Complementary' and join them into a new category called 'Aviation_Funded'
+# 10. Remove rows where 'no_of_children' is 9 or 10
+# 11. Swap the values of 'no_of_adults' and 'no_of_children' columns where 'no_of_adults' is 0 and 'no_of_children' is not 0
+# 12. Convert the 'no_of_children' column to a binary column 'with_children' where 0 means no children and 1 means at least 1 child
+# 13. Drop the records where the 'no_of_weekend_nights' is 0 and the 'no_of_week_nights' is also 0
+# 14. Create categories for the 'no_of_weekend_nights' column
+# 15. Encode the 'no_of_weekend_nights' column
+# 16. Convert the 'no_of_week_nights' column to category data type
+# 17. Apply categories to the 'no_of_week_nights' column
+# 18. Encode the 'no_of_week_nights' column
+# 19. Drop the 'required_car_parking_space' column
+# 20. Drop the 'repeated_guest' column
+# 21. Drop the 'no_of_previous_cancellations' column
+# 22. Drop the 'no_of_previous_bookings_not_canceled' column
+# 23. Filter the data to select rows where the average price per room is zero
+# 24. Drop the rows where the average price per room is zero and the market segment type is not Online, Offline, or Corporate
+# 25. Drop records with average price over 500
+# 27. Group the 'no_of_special_requests' column into categories
+# 28. Convert the 'no_of_special_requests' column to category data type
+# 29. Encode the 'no_of_special_requests' column
+# 30. Remove outliers using Isolation Forest
+# 31. Get indices where the arrival_date is 29 and arrival_month is 2
+# 32. Drop the rows where the arrival_date is 29 and the arrival_month is 2
+# 33. Save the processed data
+# The processed data is saved in the 'data/processed' directory as 'hotel_reservations.csv'
+# The script can be executed from the command line using the following command:
+# python src/data_preparation.py
+# Copyright (c) 2024
+# Uvod u nauku o podacima, Prirodno-matematicki fakultet, Univerzitet u Kragujevcu
+# Authors: Radovan Draskovic, Marija Jolovic
+# Project: Predstavljanje i tumacenje skupa podataka Hotel Reservations
+
 import pandas as pd
 import numpy as np
 
